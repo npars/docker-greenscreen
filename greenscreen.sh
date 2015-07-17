@@ -23,4 +23,4 @@ cat > config.json << EOF
 }
 EOF
 
-npm start
+exec npm start
