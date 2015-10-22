@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# move into greenscreen application directory
+cd /srv/greenscreen
+
 : ${COUCH_HOST:="http://couchdb"}
 : ${COUCH_PORT:="5984"}
 : ${COUCH_DB:="gscreen"}
