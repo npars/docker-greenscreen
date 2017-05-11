@@ -5,9 +5,9 @@ RUN apt-get update && \
     ln -s /usr/bin/nodejs /usr/bin/node && \
     rm -rf /var/lib/apt/lists/*
 
-ENV GREENSCREEN_DOWNLOAD_SHA1=ea83efb024d66ef840f3173528937a7ace28de36 \
-    GREENSCREEN_GITSHA=1095132ed66ccf0f8a787f84bff63068a2b48ac1 \
-    GREENSCREEN_DOWNLOAD_URL=https://github.com/groupon/greenscreen/archive/1095132ed66ccf0f8a787f84bff63068a2b48ac1.zip
+ARG GREENSCREEN_GITSHA=8f33a6e92615e061179e17afd3e2a78703ac2969
+ARG GREENSCREEN_DOWNLOAD_SHA1=be27e920a812e5a5af128b1befa58cd3dd2aca3c
+ARG GREENSCREEN_DOWNLOAD_URL=https://github.com/npars/greenscreen/archive/${GREENSCREEN_GITSHA}.zip
 
 RUN set -x; buildDeps='curl ca-certificates unzip'; \
     apt-get update && \
@@ -17,7 +17,7 @@ RUN set -x; buildDeps='curl ca-certificates unzip'; \
     unzip greenscreen.zip && \
     mv greenscreen-${GREENSCREEN_GITSHA} /srv/greenscreen && \
     rm greenscreen.zip && \
-    apt-get purge -y --auto-remove $buildDeps && rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /srv/greenscreen
 RUN npm install
